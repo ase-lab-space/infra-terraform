@@ -105,7 +105,7 @@ resource "aws_route53_record" "ase_lab_mail_a" {
 
   alias {
     evaluate_target_health = false
-    name                   = aws_cloudfront_distribution.ase-lab-mail.domain_name
-    zone_id                = aws_cloudfront_distribution.ase-lab-mail.hosted_zone_id
+    name                   = module.mail_assets.cloudfront_dist_domain_name
+    zone_id                = module.mail_assets.cloudfront_dist_zone_id
   }
 }

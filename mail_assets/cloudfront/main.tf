@@ -1,7 +1,7 @@
 resource "aws_cloudfront_distribution" "ase-lab-mail" {
   origin {
-    domain_name = aws_s3_bucket.main.bucket_domain_name
-    origin_id   = aws_s3_bucket.main.id
+    domain_name = var.s3_bucket.bucket_domain_name
+    origin_id   = var.s3_bucket.id
     s3_origin_config {
       origin_access_identity = aws_cloudfront_origin_access_identity.ase-lab-mail-identity.cloudfront_access_identity_path
     }
@@ -14,7 +14,7 @@ resource "aws_cloudfront_distribution" "ase-lab-mail" {
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = aws_s3_bucket.main.id
+    target_origin_id = var.s3_bucket.id
 
     viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
@@ -30,7 +30,7 @@ resource "aws_cloudfront_distribution" "ase-lab-mail" {
   }
 
   viewer_certificate {
-    acm_certificate_arn = aws_acm_certificate.ase_lab_space.arn
+    acm_certificate_arn = var.acm_arn
     ssl_support_method  = "sni-only"
   }
 }

@@ -1,18 +1,4 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 4.58.0"
-    }
-  }
-  required_version = "~> 1.3.9"
-}
-
-provider "aws" {
-  region = "ap-northeast-1"
-}
-
-provider "aws" {
-  region = "us-east-1"
-  alias  = "us-east-1"
+module "mail_assets" {
+  source = "./mail_assets"
+  acm_arn = aws_acm_certificate.ase_lab_space.arn
 }

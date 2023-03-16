@@ -22,7 +22,7 @@ data "aws_iam_policy_document" "ase-lab-mail-s3-policy" {
     effect = "Allow"
     principals {
       type        = "AWS"
-      identifiers = [aws_cloudfront_origin_access_identity.ase-lab-mail-identity.iam_arn]
+      identifiers = [var.cloudfront_origin_access_identity_iam_arn]
     }
     actions = [
       "s3:GetObject"
