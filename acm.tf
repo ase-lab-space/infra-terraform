@@ -6,6 +6,10 @@ resource "aws_acm_certificate" "ase_lab_space" {
     "ase-lab.space",
     "*.ase-lab.space",
   ]
+
+  lifecycle {
+    create_before_destroy = true
+  }
 }
 
 resource "aws_acm_certificate_validation" "ase_lab_space" {
